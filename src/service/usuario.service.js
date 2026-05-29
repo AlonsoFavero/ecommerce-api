@@ -21,3 +21,7 @@ delete usuarioSemSenha.senha
 
 return usuarioSemSenha
 }
+
+module.exports = {
+    criar
+}
