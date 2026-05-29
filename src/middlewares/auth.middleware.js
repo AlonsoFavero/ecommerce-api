@@ -28,3 +28,5 @@ next()
  }
 
 }
+
+module.exports = authMiddleware
