@@ -3,7 +3,7 @@ const mongoose = require ("mongoose")
 const usuarioSchema = new mongoose.Schema({
     nome: {
    type: String,
-   required: true
+   required: true,
     },
 
     email: {
@@ -16,6 +16,7 @@ const usuarioSchema = new mongoose.Schema({
      type: String,
      required: true,
      select: false
+
     },
 
     role: {
