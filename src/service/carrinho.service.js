@@ -1,5 +1,6 @@
 const carrinho = require("../models/carrinho.model")
 const produto = require("../models/produto.model")
+const Order = require("../models/order.model")
 const AppError = require("../utils/AppError")
 
 async function adicionarProduto(usuarioId, produtoId, quantidade){
@@ -70,7 +71,46 @@ async function calcularTotalCarrinho(usuarioId){
 
 }
 
+async function finalizarCompra(usuarioId){
+  
+  let carrinho = await carrinho.findOne({
+    usuario: usuarioId
+  })
+
+  if(!carrinhoUsuario){
+    throw new AppError("carrinho não encontrado", 404)
+  }
+
+  let total = 0
+
+  const itensFormatados = []
+
+  for (const iten of carrinhoUsuario.itens) {
+    const produtoEncontrado = await produto.findById(item.produto)
+
+    total += produtoEncontrado.preco * item.quantidade
+
+      itensFormatados.push({
+    produto: item.produto,
+    quantidade: item.quantidade
+  })
+  }
+
+const order = await Order.create ({
+  usuario: usuarioId,
+  itens: itensFormatados,
+  total
+})
+
+carrinhoUsuario.itens = []
+await carrinhoUsuario.save()
+
+return order
+}
+
 module.exports ={
     adicionarProduto,
-    removerProduto
+    removerProduto,
+    calcularTotalCarrinho,
+    finalizarCompra
 }
