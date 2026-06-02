@@ -31,6 +31,24 @@ itemExistente.quantidade += quantidade
 await carrinhoUsuario.save()
 }
 
+async function removerProduto(usuarioId, produtoId){
+
+    let carrinhoUsuario = await carrinho.findOne({
+    usuario: usuarioId
+  })
+
+  if (!carrinhoUsuario) {
+    throw new AppError("carrinho não encontrado", 404)
+  }
+
+  carrinhoUsuario.itens = carrinhoUsuario.itens.filter(
+    item => item.produto.toString() !== produtoId
+  )
+
+  await carrinhoUsuario.save()
+}
+
 module.exports ={
-    adicionarProduto
+    adicionarProduto,
+    removerProduto
 }
