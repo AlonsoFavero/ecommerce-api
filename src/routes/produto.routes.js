@@ -1,7 +1,7 @@
 const {Router} = require("express")
 const{criarProduto, listarProduto, buscarProduto, deletarProduto, atualizarProduto} = require("../controllers/produto.controller")
-const {authMiddleware} = require("../middlewares/auth.middleware")
-const {adminMiddleware} = require("../middlewares/admin.middleware")
+const authMiddleware = require("../middlewares/auth.middleware")
+const adminMiddleware = require("../middlewares/admin.middleware")
 
 const router = Router()
 
