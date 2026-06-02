@@ -48,6 +48,28 @@ async function removerProduto(usuarioId, produtoId){
   await carrinhoUsuario.save()
 }
 
+async function calcularTotalCarrinho(usuarioId){
+
+  let carrinhoUsuario = await carrinho.findOne({
+    usuario: usuarioId
+  })
+
+  if(!carrinhoUsuario){
+    throw new AppError("carrinho não encontrado", 404)
+  }
+
+  let total = 0
+
+  for (const iten of carrinhoUsuario.itens) {
+    const produtoEncontrado = await produto.findById(item.produto)
+
+    total += produtoEncontrado.preco * item.quantidade
+  }
+
+  return total
+
+}
+
 module.exports ={
     adicionarProduto,
     removerProduto
