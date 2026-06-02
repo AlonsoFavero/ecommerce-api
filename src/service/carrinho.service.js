@@ -73,7 +73,7 @@ async function calcularTotalCarrinho(usuarioId){
 
 async function finalizarCompra(usuarioId){
   
-  let carrinho = await carrinho.findOne({
+  let carrinhoUsuario = await carrinho.findOne({
     usuario: usuarioId
   })
 
@@ -81,24 +81,15 @@ async function finalizarCompra(usuarioId){
     throw new AppError("carrinho não encontrado", 404)
   }
 
-  let total = 0
-
-  const itensFormatados = []
-
-  for (const iten of carrinhoUsuario.itens) {
-    const produtoEncontrado = await produto.findById(item.produto)
-
-    total += produtoEncontrado.preco * item.quantidade
-
-      itensFormatados.push({
-    produto: item.produto,
-    quantidade: item.quantidade
-  })
+  if(carrinhoUsuario.itens.legth === 0){
+   throw new AppError("carrinho vazio", 409)
   }
+
+  const total = await calcularTotalCarrinho(usuarioId)
 
 const order = await Order.create ({
   usuario: usuarioId,
-  itens: itensFormatados,
+  itens: carrinhoUsuario.itens,
   total
 })
 
