@@ -7,9 +7,12 @@ app.use(express.json())
 
 conectar()
 
-const produtoRouters = require("./routes/produto.routes")
+const produtoRouters = require("../src/routes/produto.routes")
+const authRoutes = require("../src/routes/auth.routes")
 
 app.use("/produtos", produtoRouters)
+
+app.use("/auth", authRoutes)
 
 app.listen(3000, () => {
     console.log("servidor rodando na porta 3000")

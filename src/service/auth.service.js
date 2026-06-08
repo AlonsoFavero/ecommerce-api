@@ -1,3 +1,8 @@
+const Usuario = require("../models/Usuario.model")
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
+const AppError = require("../utils/AppError")
+
 async function login(email,senha){
     const usuario =
     await Usuario.findOne({email})
@@ -34,3 +39,5 @@ async function login(email,senha){
     }
         
 }
+
+module.exports = {login}

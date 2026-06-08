@@ -1,6 +1,6 @@
-const {finalizarComprar} = require("../service/carrinho.service")
+const {finalizarCompra} = require("../service/carrinho.service")
 
-function finalizarCompraController(req, res){
+async function finalizarCompraController(req, res){
 
     const usuarioId = req.usuario.id
 
@@ -8,7 +8,7 @@ function finalizarCompraController(req, res){
 
     return res.status(201).json({
         message: "compra finalizada com sucesso",
-        orders
+        order
     })
 }
 
