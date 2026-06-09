@@ -1,4 +1,22 @@
 const {finalizarCompra, adicionarProduto} = require("../service/carrinho.service")
+const carrinho = require("../models/carrinho.model")
+
+async function listarCarrinhoController(req,res){
+const usuarioId = req.user.id
+
+const carrinhoUsuario = await carrinho.findOne({usuario: usuarioId})
+
+if(!carrinhoUsuario) {
+    return res.status(200).json({
+        itens: []
+    })
+}
+
+return res.status(200).json({
+    itens: carrinhoUsuario.itens
+})
+
+}
 
 async function adicionarProdutoController(req, res){
     const usuarioId = req.user.id
@@ -26,5 +44,6 @@ async function finalizarCompraController(req, res){
 
 module.exports = {
     finalizarCompraController,
-    adicionarProdutoController
+    adicionarProdutoController,
+    listarCarrinhoController
 }
