@@ -9,8 +9,11 @@ conectar()
 
 const produtoRouters = require("../src/routes/produto.routes")
 const authRoutes = require("../src/routes/auth.routes")
+const usuarioRoutes = require("../src/routes/usuario.routes")
 
 app.use("/produtos", produtoRouters)
+
+app.use("/usuarios", usuarioRoutes)
 
 app.use("/auth", authRoutes)
 
