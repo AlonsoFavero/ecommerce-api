@@ -7,11 +7,14 @@ app.use(express.json())
 
 conectar()
 
-const produtoRouters = require("../src/routes/produto.routes")
+const produtoRoutes = require("../src/routes/produto.routes")
 const authRoutes = require("../src/routes/auth.routes")
 const usuarioRoutes = require("../src/routes/usuario.routes")
+const carrinhoRoutes = require("../src/routes/carrinho.routes")
 
-app.use("/produtos", produtoRouters)
+app.use("/produtos", produtoRoutes)
+
+app.use("/carrinho", carrinhoRoutes)
 
 app.use("/usuarios", usuarioRoutes)
 

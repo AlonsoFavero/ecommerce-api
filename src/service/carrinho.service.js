@@ -61,7 +61,7 @@ async function calcularTotalCarrinho(usuarioId){
 
   let total = 0
 
-  for (const iten of carrinhoUsuario.itens) {
+  for (const item of carrinhoUsuario.itens) {
     const produtoEncontrado = await produto.findById(item.produto)
 
     total += produtoEncontrado.preco * item.quantidade
@@ -81,7 +81,7 @@ async function finalizarCompra(usuarioId){
     throw new AppError("carrinho não encontrado", 404)
   }
 
-  if(carrinhoUsuario.itens.legth === 0){
+  if(carrinhoUsuario.itens.length === 0){
    throw new AppError("carrinho vazio", 409)
   }
 
