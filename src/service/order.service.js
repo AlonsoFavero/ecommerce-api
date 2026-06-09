@@ -7,6 +7,13 @@ async function listarPedidos(usuarioId){
  return orders
 }
 
+async function detalharPedido(usarioId, pedidoId){
+    const pedido = await Order.findOne({_id: pedidoId, usuario: usuarioId})
+
+    return pedido
+}
+
 module.exports = {
-    listarPedidos
+    listarPedidos,
+    detalharPedido
 }
