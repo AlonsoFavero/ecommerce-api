@@ -1,3 +1,4 @@
+const { string } = require("joi")
 const mongoose = require("mongoose")
 
 const orderSchema = new mongoose.Schema({
@@ -27,6 +28,12 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true,
     min: 0
+    },
+
+    status: {
+        type: String,
+        enum: ["PENDING", "PAID", "SHIPPED", "CANCELLED"],
+        default: "PENDING"
     }
 },
 {
