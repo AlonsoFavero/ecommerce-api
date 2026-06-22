@@ -6,7 +6,7 @@ function adminMiddleware(req, res, next) {
         return res.status(401).json({error: "não autenticado"})
     }
 
-    if(req.user !== "admin"){
+    if(req.user.role !== "admin"){
         return res.status(403).json({error: "acesso negado: apenas admin"})
     }
 
