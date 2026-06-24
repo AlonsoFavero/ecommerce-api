@@ -1,4 +1,13 @@
 const {atualizarStatusPedido} = require("../service/order.service")
+const{success} = require("../utils/response")
+const  {listarPedidos} = require("../service/order.service")
+
+async function listarPedidosController(req,res){
+    const userId = req.user.id
+    const pedidos = await service.listarPedidos(userId)
+
+    return success(res,"lista de pedidos", pedidos)
+}
 
 async function atualizarStatusController(req,res){
     const {id} = req.params
@@ -10,5 +19,6 @@ async function atualizarStatusController(req,res){
 }
 
 module.exports = {
-    atualizarStatusController
+    atualizarStatusController,
+    listarPedidosController
 }
