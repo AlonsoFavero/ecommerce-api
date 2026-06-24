@@ -13,7 +13,7 @@ let filtro = {}
  return pedidos
 }
 
-async function detalharPedido(usarioId, pedidoId){
+async function detalharPedido(usuarioId, pedidoId){
     const pedido = await Order.findOne({_id: pedidoId, usuario: usuarioId})
 
     return pedido
