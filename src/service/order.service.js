@@ -1,11 +1,16 @@
 const Order = require("../models/order.model")
 const AppError = require("../utils/AppError")
 
-async function listarPedidos(usuarioId){
+async function listarPedidos(usuarioId, role){
+let filtro = {}
 
- const orders = await Order.find({usuario: usuarioId})
+ if(role !== "admin"){
+  filtro = {usuario: usuarioId}
+ }
 
- return orders
+ const pedidos = await Order.find(filtro)
+
+ return pedidos
 }
 
 async function detalharPedido(usarioId, pedidoId){
