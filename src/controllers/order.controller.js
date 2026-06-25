@@ -38,6 +38,17 @@ async function createOrderController(req,res){
         throw new AppError("item não encontrado", 404)
     }
 
+    for (let item of itens) {
+
+    if (!item.produtoId) {
+        throw new AppError("produtoId inválido", 400)
+    }
+
+    if (!item.quantidade || item.quantidade <= 0) {
+        throw new AppError("quantidade inválida", 400)
+    }
+}
+
     const pedidoCriado = await criarPedido(usuarioId, itens)
 
     return success(res, "pedido criado com sucesso", pedidoCriado)
