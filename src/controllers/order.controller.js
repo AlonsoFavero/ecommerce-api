@@ -1,4 +1,4 @@
-const {atualizarStatusPedido, detalharPedido,listarPedidos} = require("../service/order.service")
+const {atualizarStatusPedido, detalharPedido,listarPedidos, criarPedido} = require("../service/order.service")
 const{success} = require("../utils/response")
 
 async function listarPedidosController(req,res){
@@ -29,8 +29,18 @@ async function atualizarStatusController(req,res){
     return success(res,"status atualizado", pedidoAtualizado)
 }
 
+async function createOrderController(req,res){
+    const usuarioId = req.user.id
+    const itens = req.body
+
+    const pedidoCriado = await criarPedido(usuarioId, itens)
+
+    return success(res, "pedido criado com sucesso", pedidoCriado)
+}
+
 module.exports = {
     atualizarStatusController,
     detalharPedidoController,
-    listarPedidosController
+    listarPedidosController, 
+    createOrderController
 }

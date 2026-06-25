@@ -1,5 +1,40 @@
 const Order = require("../models/order.model")
+const Produto = require("../models/produto.model")
 const AppError = require("../utils/AppError")
+
+async function criarPedido(usuarioId, itens){
+    let total = 0
+    let itensProcessados = []
+
+    for(let item of itens) {
+
+   const produto = await Produto.findById(item.produtoId)
+
+   if(!produto){
+    throw new AppError("produto não encontrado", 404)
+   }
+
+   const subtotal = produto.price * item.quantidade
+
+   total = total + subtotal
+
+   itensProcessados.push({
+    produtoId: produto._id,
+    quantidade: item.quantidade,
+    preco: produto.price,
+    subtotal
+   })
+    }
+
+    const pedidoCriado = await Order.create({
+        usuario: usuarioId,
+        items: itensProcessados,
+        total: total,
+        status: "PENDING"
+    })
+
+    return pedidoCriado
+}
 
 async function listarPedidos(usuarioId, role){
 let filtro = {}
@@ -50,5 +85,6 @@ return pedido
 module.exports = {
     listarPedidos,
     detalharPedido,
-    atualizarStatusPedido
+    atualizarStatusPedido,
+    criarPedido
 }
