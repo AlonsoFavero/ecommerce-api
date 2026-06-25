@@ -1,5 +1,6 @@
 const {atualizarStatusPedido, detalharPedido,listarPedidos, criarPedido} = require("../service/order.service")
 const{success} = require("../utils/response")
+const AppError = require("../utils/AppError")
 
 async function listarPedidosController(req,res){
     const usuarioId = req.user.id
@@ -31,7 +32,11 @@ async function atualizarStatusController(req,res){
 
 async function createOrderController(req,res){
     const usuarioId = req.user.id
-    const itens = req.body
+    const itens = req.body.items
+
+    if(!itens || itens.length === 0){
+        throw new AppError("item não encontrado", 404)
+    }
 
     const pedidoCriado = await criarPedido(usuarioId, itens)
 
