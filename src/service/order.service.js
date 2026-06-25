@@ -11,7 +11,9 @@ async function criarPedido(usuarioId, itens){
    const produto = await Produto.findById(item.produtoId)
 
    if(!produto){
-    throw new AppError("produto não encontrado", 404)
+    throw new AppError(
+        `produto não encontrado (id: ${item.produtoId})`, 
+        404)
    }
 
    const subtotal = produto.price * item.quantidade
