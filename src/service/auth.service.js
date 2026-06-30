@@ -37,7 +37,7 @@ async function login(email,senha){
       usuario: usuarioSemSenha,
       token
     }
-        
+      
 }
 
 module.exports = {login}
