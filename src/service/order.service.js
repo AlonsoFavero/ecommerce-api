@@ -51,13 +51,6 @@ let filtro = {}
 }
 
 async function detalharPedido(usuarioId, pedidoId, role){
-    let filtro = {
-        _id: pedidoId
-    }
-    
-    if(role !== "admin"){
-     filtro.usuario = usuarioId
-    }
 
     const pedido = await Order.findOne(filtro)
 

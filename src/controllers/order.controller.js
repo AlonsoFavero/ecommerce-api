@@ -13,9 +13,18 @@ async function listarPedidosController(req,res){
 
 async function detalharPedidoController(req,res){
 const pedidoId = req.params.id
+const role = req.user.role
 const usuarioId = req.user.id
 
-const pedido = await detalharPedido(pedidoId, usuarioId)
+let filtro = {
+    _id: pedidoId
+}
+
+if(role !== "admin"){
+    filtro.usuario = usuarioId
+}
+
+const pedido = await detalharPedido(filtro)
 
 return success(res, "pedido encontrado", pedido)
 
