@@ -1,5 +1,6 @@
 const {login} = require("../service/auth.service")
-const bcrypt = require("../models/Usuario.model")
+const bcrypt = require("bcrypt")
+const Usuario = require("../models/Usuario.model")
 const AppError = require("../utils/AppError")
 
 async function loginController(req,res){
@@ -14,10 +15,10 @@ return res.status(200).json({
 }
 
 async function registerController(req, res) {
-    const { email, senha } = req.body
+    const { nome, email, senha } = req.body
 
-    if (!email || !senha) {
-        throw new AppError("email e senha são obrigatórios", 400)
+    if (! nome || !email || !senha) {
+        throw new AppError("nome, email e senha são obrigatórios", 400)
     }
 
     const usuarioExiste = await Usuario.findOne({ email })
@@ -29,13 +30,17 @@ async function registerController(req, res) {
     const senhaHash = await bcrypt.hash(senha, 10)
 
     const usuario = await Usuario.create({
+        nome,
         email,
         senha: senhaHash
     })
 
+    const usuarioSemSenha = usuario.toObject()
+    delete usuarioSemSenha.senha
+
     return res.status(201).json({
         message: "usuário criado com sucesso",
-        usuario
+        usuario: usuarioSemSenha
     })
 }
 
