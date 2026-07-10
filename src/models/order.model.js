@@ -1,4 +1,4 @@
-const { string } = require("joi")
+const { string, number } = require("joi")
 const mongoose = require("mongoose")
 
 const orderSchema = new mongoose.Schema({
@@ -20,6 +20,18 @@ const orderSchema = new mongoose.Schema({
               type: Number,
               required: true,
               min: 1
+            },
+
+            preco: {
+                type: Number,
+                required: true,
+                min: 1
+            },
+           
+            subtotal: {
+                type: Number,
+                required: true,
+                min: 0
             }
         }
     ],

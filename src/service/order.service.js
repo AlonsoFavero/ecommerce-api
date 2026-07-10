@@ -16,22 +16,22 @@ async function criarPedido(usuarioId, itens){
         404)
    }
 
-   const subtotal = produto.price * item.quantidade
+   const subtotal = produto.preco * item.quantidade
 
    total = total + subtotal
 
    itensProcessados.push({
-    produtoId: produto._id,
+    produto: produto._id,
     quantidade: item.quantidade,
-    preco: produto.price,
+    preco: produto.preco,
     subtotal
    })
     }
 
     const pedidoCriado = await Order.create({
         usuario: usuarioId,
-        items: itensProcessados,
-        total: total,
+        itens: itensProcessados,
+        total,
         status: "PENDING"
     })
 
