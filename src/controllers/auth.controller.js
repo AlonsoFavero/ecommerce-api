@@ -1,6 +1,6 @@
 const {login} = require("../service/auth.service")
 const bcrypt = require("bcrypt")
-const Usuario = require("../models/Usuario.model")
+const Usuario = require("../models/usuario.model")
 const AppError = require("../utils/AppError")
 
 async function loginController(req,res){
