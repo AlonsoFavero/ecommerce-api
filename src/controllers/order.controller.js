@@ -24,7 +24,7 @@ if(role !== "admin"){
     filtro.usuario = usuarioId
 }
 
-const pedido = await detalharPedido(filtro)
+const pedido = await detalharPedido(usuarioId, pedidoId, role)
 
 return success(res, "pedido encontrado", pedido)
 

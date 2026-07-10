@@ -15,7 +15,7 @@ return res.status(200).json({
 }
 
 async function registerController(req, res) {
-    const { nome, email, senha } = req.body
+    const { nome, email, senha, role } = req.body
 
     if (! nome || !email || !senha) {
         throw new AppError("nome, email e senha são obrigatórios", 400)
@@ -32,7 +32,8 @@ async function registerController(req, res) {
     const usuario = await Usuario.create({
         nome,
         email,
-        senha: senhaHash
+        senha: senhaHash,
+        role
     })
 
     const usuarioSemSenha = usuario.toObject()

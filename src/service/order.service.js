@@ -52,7 +52,15 @@ let filtro = {}
 
 async function detalharPedido(usuarioId, pedidoId, role){
 
-    const pedido = await Order.findOne(filtro)
+   let filtro = {
+    _id: pedidoId
+   }
+
+   if(role !== "admin"){
+    filtro.usuario = usuarioId
+   }
+
+   const pedido = await Order.findOne(filtro)
 
     if(!pedido){
         throw new AppError("pedido não encontrado", 404)

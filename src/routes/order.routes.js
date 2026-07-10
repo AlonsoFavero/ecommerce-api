@@ -24,7 +24,7 @@ router.get(
 )
 
 router.patch (
-    ":id/status",
+    "/:id/status",
     authMiddleware,
     adminMiddleware,
     atualizarStatusController
