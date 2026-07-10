@@ -6,7 +6,7 @@ async function listarPedidosController(req,res){
     const usuarioId = req.user.id
     const role = req.user.role
 
-    const pedidos = await service.listarPedidos(usuarioId, role)
+    const pedidos = await listarPedidos(usuarioId, role)
 
     return success(res,"lista de pedidos", pedidos)
 }
