@@ -27,7 +27,7 @@ const listarProduto = async(req,res) => {
 
 const deletarProduto = async(req,res) => {
 
-    req.params.id 
+    const {id} = req.params
 
     const produto = await produtoService.deletar(id)
 
