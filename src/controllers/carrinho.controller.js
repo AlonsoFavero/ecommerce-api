@@ -25,7 +25,7 @@ async function adicionarProdutoController(req, res){
     await adicionarProduto(usuarioId, produtoId, quantidade)
 
     return res.status(200).json({
-        message: "produto adicionado co sucesso"
+        message: "produto adicionado ao carrinho"
     })
 
 }
