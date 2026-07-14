@@ -8,7 +8,7 @@
 
 > API REST desenvolvida com **Node.js**, **Express** e **MongoDB** para simular o backend de um sistema de e-commerce, utilizando autenticação JWT, controle de acesso por perfis e arquitetura em camadas.
 
-**Status do Projeto:** 🚧 Em desenvolvimento
+**Status do Projeto:** Concluído
 
 ---
 
