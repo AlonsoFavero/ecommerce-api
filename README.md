@@ -4,7 +4,7 @@
 ![Express](https://img.shields.io/badge/Express.js-Backend-000000?logo=express)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb&logoColor=white)
 ![JWT](https://img.shields.io/badge/Auth-JWT-orange)
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
+![Status](https://img.shields.io/badge/Status-Concluido-yellow)
 
 > API REST desenvolvida com **Node.js**, **Express** e **MongoDB** para simular o backend de um sistema de e-commerce, utilizando autenticação JWT, controle de acesso por perfis e arquitetura em camadas.
 
